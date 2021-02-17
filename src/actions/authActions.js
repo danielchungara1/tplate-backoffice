@@ -1,22 +1,17 @@
 import { types } from "../types/types"
-
-const userExample = {
-    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYW5pZWxjaHVuZ2FyYTFAZ21haWwuY29tIiwiQ0xBSU1fSUQiOjEsIkNMQUlNX1RPS0VOIjpbeyJhdXRob3JpdHkiOiJWSVNVQUxJWkFSX1BFUkZJTCJ9LHsiYXV0aG9yaXR5IjoiRURJVEFSX1BFUkZJTCJ9XSwiZXhwIjoxNjQ1MTAwOTQ5LCJpYXQiOjE2MTM1NjQ5NDl9.WA6fYpBmZcRLnAPeo3b2-V36mpKq007Gx_Vvj6xQpqf8Wzv2KFeVMSotC_PDP4ShTLkUQwtfW3MdyxZdz4Vccg",
-    "username": "danielchungara1@gmail.com",
-    "name": "Daniel",
-    "lastname": "Chungara",
-    "email": "danielchungara1@gmail.com",
-    "telefono": "11-32652399"
-}
+import { loginPost } from '../api/authApi'
 
 export const login = (username, password) => {
 
     return (dispatch) => {
         dispatch(loginInit())
         setTimeout(() => {
-            dispatch(loginSuccess(userExample))
-            dispatch(loginEnd())            
-        }, 1500);
+            const res = loginPost(username, password)
+            res.then(user => {
+                dispatch(loginSuccess(user))
+                dispatch(loginEnd())
+            })
+        }, 350);
     }
 }
 
