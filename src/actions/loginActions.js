@@ -8,8 +8,17 @@ export const login = (username, password) => {
         setTimeout(() => {
             const res = loginPost(username, password)
             res.then(user => {
-                dispatch(loginSuccess(user))
-                dispatch(loginEnd())
+                try {
+                    const userJson = JSON.parse(user);
+                    console.log('Usuario logueado.' , userJson.username)
+                    dispatch(loginSuccess(userJson))
+                } catch(err) {
+                    console.log(user)
+                    dispatch(loginFailure())
+                }finally{
+                    dispatch(loginEnd())
+                }
+                
             })
         }, 350);
     }
@@ -21,6 +30,12 @@ export const loginSuccess = (user) => {
         payload: {
             user
         }
+    }
+}
+
+export const loginFailure = () => {
+    return {
+        type: types.loginFailure        
     }
 }
 

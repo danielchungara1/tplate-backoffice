@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { login } from '../../actions/authActions';
+import { login } from '../../actions/loginActions';
 import { useForm } from '../../hooks/useForm';
 
 
@@ -23,7 +23,7 @@ export const LoginScreen = () => {
     }
 
     return (
-        <div>
+        <>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -41,6 +41,6 @@ export const LoginScreen = () => {
                 />
                 <button type='submit'>Submit</button>
             </form>
-        </div>
+        </>
     )
 }
