@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import { login } from '../../actions/loginActions';
 import { useForm } from '../../hooks/useForm';
@@ -18,12 +19,12 @@ export const LoginScreen = () => {
 
     const {username, password} = formValues
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()    
+    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const value =  dispatch(login(username, password, addToast))
-        
+        const value =  dispatch(login(username, password, addToast, history))
     }
 
     return (

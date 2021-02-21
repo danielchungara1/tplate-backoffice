@@ -1,9 +1,9 @@
 import { types } from "../types/types"
 import { loginPost } from '../api/authApi'
 import { useToasts } from "react-toast-notifications";
+import { useHistory } from "react-router-dom";
 
-export const login = (username, password, addToast) => {
-
+export const login = (username, password, addToast, history) => {    
     return (dispatch) => {        
         dispatch(loginInit())
         setTimeout(() => {
@@ -13,6 +13,7 @@ export const login = (username, password, addToast) => {
                     const userJson = JSON.parse(user);
                     addToast(userJson.message, { appearance: 'success' });
                     dispatch(loginSuccess(userJson.data))
+                    history.push("/home")
                 } catch(err) {
                     console.log(user)
                     dispatch(loginFailure())
