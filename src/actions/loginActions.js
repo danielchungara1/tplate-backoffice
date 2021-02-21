@@ -1,17 +1,18 @@
 import { types } from "../types/types"
 import { loginPost } from '../api/authApi'
+import { useToasts } from "react-toast-notifications";
 
-export const login = (username, password) => {
+export const login = (username, password, addToast) => {
 
-    return (dispatch) => {
+    return (dispatch) => {        
         dispatch(loginInit())
         setTimeout(() => {
             const res = loginPost(username, password)
             res.then(user => {
                 try {
                     const userJson = JSON.parse(user);
-                    console.log('Usuario logueado.' , userJson.username)
-                    dispatch(loginSuccess(userJson))
+                    addToast(userJson.message, { appearance: 'success' });
+                    dispatch(loginSuccess(userJson.data))
                 } catch(err) {
                     console.log(user)
                     dispatch(loginFailure())
@@ -20,7 +21,7 @@ export const login = (username, password) => {
                 }
                 
             })
-        }, 350);
+        }, 0);
     }
 }
 

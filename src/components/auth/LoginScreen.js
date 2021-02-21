@@ -1,10 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { useToasts } from 'react-toast-notifications';
 import { login } from '../../actions/loginActions';
 import { useForm } from '../../hooks/useForm';
 
 
 export const LoginScreen = () => {
+
+    const { addToast } = useToasts();
 
     const initialForm = {
         username: '',
@@ -19,7 +22,8 @@ export const LoginScreen = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(login(username, password))
+        const value =  dispatch(login(username, password, addToast))
+        
     }
 
     return (
