@@ -1,6 +1,6 @@
 import React from 'react'
-import { JournalScreen } from '../components/journal/JournalScreen'
-import { AuthRouter } from './AuthRouter'
+import {JournalScreen} from '../components/journal/JournalScreen'
+import {AuthRouter} from './AuthRouter'
 
 import {
     BrowserRouter as Router,
@@ -17,13 +17,13 @@ export const AppRouter = () => {
         <Router>
             <Switch>
                 <Route path="/auth">
-                    <AuthRouter />
+                    <AuthRouter/>
                 </Route>
                 <Route path="/home">
-                    <JournalScreen />
+                    <JournalScreen/>
                 </Route>
                 <Route path="/">
-                    <Redirect to="/auth/login" />
+                    <Redirect to="/auth/login"/>
                 </Route>
             </Switch>
         </Router>

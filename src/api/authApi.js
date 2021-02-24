@@ -15,7 +15,15 @@ export const loginPost = async (username, password) => {
         },
         body: JSON.stringify({ 'username': username, 'password': password })
     });
-    return await resp.text();    
+    // return await resp.text();    
+    // await resp.json().then(res => console.log(res));  
+    const {ok, status} = resp;   
+    if (!ok) {      
+        let message = '';
+        await resp.json().then(body => message = body.message);        
+        throw message
+    }
+    return await resp.text();      
 }
 
 export const registerPost = async (username, password) => {

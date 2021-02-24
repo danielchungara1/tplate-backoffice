@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { register } from '../../actions/registerActions';
 import { useForm } from '../../hooks/useForm';
 
 export const RegisterScreen = () => {
@@ -18,7 +17,6 @@ export const RegisterScreen = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(register(username, password))
     }
 
     return (
