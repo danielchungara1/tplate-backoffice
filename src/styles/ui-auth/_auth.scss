@@ -1,9 +1,38 @@
-.auth__main {
-  align-items: center;
-  background-color: $primary;
+.auth__layout {
+  // Layout general
+    align-items: center;
+    background-color: $primary;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+.auth__card {
+  // Card
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
+  padding: 15px;
+  border: red 1px solid;
+}
+.auth__card_header {
+  // Card Header
+
+}
+.auth__card_body {
+  // Card Body
+}
+.auth__card_footer {
+ // Card footer
+}
+.auth__input {
+  // Input Controls
+}
+.auth__input_title {
+  // Input title
+}
+.auth__input_body {
+  // Input Body
 }

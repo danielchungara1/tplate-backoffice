@@ -11,9 +11,6 @@ import {
 
 export const AppRouter = () => {
     return (
-        /* Configuracion de rutas
-        1- path=/auth , AuthRouter
-        2- path=/ , JournalScreen */
         <Router>
             <Switch>
                 <Route path="/auth">

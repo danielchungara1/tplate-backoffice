@@ -10,7 +10,7 @@ import {
 
 export const AuthRouter = () => {
     return (
-        <div>
+        <div className={'auth__layout'}>
             <Switch>
                 <Route path="/auth/login">
                     <LoginScreen />
