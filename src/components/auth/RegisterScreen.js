@@ -24,9 +24,15 @@ export const RegisterScreen = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        // Validations
+        if (password.trim() != passwordCofirm.trim()) {
+            dispatch({type: types.loginFailure})
+            addToast('Los passwords no coinciden', {appearance: 'error'});
+            return
+        }
 
+        // Webservice connection
         const response = await signUp(username, password);
-
         if (response.ok) {
             dispatch({type: types.loginSuccess, payload: response.data})
             history.push('/auth/login')
@@ -66,17 +72,17 @@ export const RegisterScreen = () => {
                             onChange={handleInputChange}
                         />
                     </div>
-                    {/*<div className="form-group">*/}
-                    {/*    <label htmlFor="exampleInputEmail1">Confirm Password</label>*/}
-                    {/*    <input*/}
-                    {/*        className="form-control"*/}
-                    {/*        type="password"*/}
-                    {/*        placeholder="*********"*/}
-                    {/*        name='passwordConfirm'*/}
-                    {/*        value={passwordCofirm}*/}
-                    {/*        onChange={handleInputChange}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Confirm Password</label>
+                        <input
+                            className="form-control"
+                            type="password"
+                            placeholder="*********"
+                            name='passwordCofirm'
+                            value={passwordCofirm}
+                            onChange={handleInputChange}
+                        />
+                    </div>
                 </div>
                 <div className="card-footer text-muted text-center">
                     <button type='submit' className={'btn btn-primary btn-block'}>Sign up</button>
