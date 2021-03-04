@@ -85,7 +85,7 @@ export const RegisterScreen = () => {
                     </div>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-primary btn-block'}>Sign up</button>
+                    <button type='submit' className={'btn btn-secondary btn-block'}>Sign up</button>
                 </div>
             </div>
         </form>

@@ -67,7 +67,7 @@ export const LoginScreen = () => {
                         </div>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-primary btn-block'}>Login</button>
+                    <button type='submit' className={'btn btn-secondary btn-block'}>Login</button>
                 </div>
             </div>
         </form>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {JournalScreen} from '../components/journal/JournalScreen'
+import {DashboardScreen} from '../components/dashboard/DashboardScreen'
 import {AuthRouter} from './AuthRouter'
 
 import {
@@ -17,7 +17,7 @@ export const AppRouter = () => {
                     <AuthRouter/>
                 </Route>
                 <Route path="/home">
-                    <JournalScreen/>
+                    <DashboardScreen/>
                 </Route>
                 <Route path="/">
                     <Redirect to="/auth/login"/>

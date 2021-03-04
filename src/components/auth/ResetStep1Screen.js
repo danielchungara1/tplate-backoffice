@@ -55,7 +55,7 @@ export const ResetStep1Screen = () => {
                         </div>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-primary btn-block'}>Enviar codigo</button>
+                    <button type='submit' className={'btn btn-secondary btn-block'}>Enviar codigo</button>
                 </div>
             </div>
         </form>
