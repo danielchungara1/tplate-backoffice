@@ -39,3 +39,8 @@ html, body {
   font-weight: 600;
   color: dimgray;
 }
+
+.password {
+  -webkit-text-security: disc;
+  text-security: disc;
+}

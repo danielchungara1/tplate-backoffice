@@ -10,13 +10,12 @@ export const RegisterScreen = () => {
 
     const initialForm = {
         username: '',
-        password: '',
-        passwordCofirm:''
+        password: ''
     };
 
     const [formValues, handleInputChange] = useForm(initialForm);
 
-    const { username, password, passwordCofirm} = formValues
+    const { username, password} = formValues
 
     const {addToast} = useToasts();
     const history = useHistory()
@@ -24,12 +23,6 @@ export const RegisterScreen = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // Validations
-        if (password.trim() != passwordCofirm.trim()) {
-            dispatch({type: types.loginFailure})
-            addToast('Los passwords no coinciden', {appearance: 'error'});
-            return
-        }
 
         // Webservice connection
         const response = await signUp(username, password);
@@ -65,23 +58,11 @@ export const RegisterScreen = () => {
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Password</label>
                         <input
-                            className="form-control"
-                            type="password"
+                            className="form-control password"
+                            type="text"
                             placeholder="Password"
                             name='password'
                             value={password}
-                            onChange={handleInputChange}
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Repetir Password</label>
-                        <input
-                            className="form-control"
-                            type="password"
-                            placeholder="Password"
-                            name='passwordCofirm'
-                            value={passwordCofirm}
                             onChange={handleInputChange}
                             autoComplete="off"
                         />

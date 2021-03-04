@@ -72,8 +72,8 @@ export const ResetStep2Screen = () => {
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Password</label>
                         <input
-                            className="form-control"
-                            type="password"
+                            className="form-control password"
+                            type="text"
                             placeholder="Password"
                             name='password'
                             value={password}
