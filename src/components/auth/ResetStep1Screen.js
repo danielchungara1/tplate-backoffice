@@ -1,9 +1,8 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
-import {login} from '../../services/loginService';
 import {types} from "../../types/types";
 import {resetStep1} from "../../services/resetPasswordService";
 
