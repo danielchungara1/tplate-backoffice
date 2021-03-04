@@ -54,6 +54,7 @@ export const ResetStep2Screen = () => {
                             name='code'
                             value={code}
                             onChange={handleInputChange}
+                            autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
@@ -65,6 +66,7 @@ export const ResetStep2Screen = () => {
                             name='email'
                             value={email}
                             onChange={handleInputChange}
+                            autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
@@ -76,6 +78,7 @@ export const ResetStep2Screen = () => {
                             name='password'
                             value={password}
                             onChange={handleInputChange}
+                            autoComplete="off"
                         />
                     </div>
                 </div>

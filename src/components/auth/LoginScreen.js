@@ -37,7 +37,7 @@ export const LoginScreen = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <div className="card">
                 <div className="card-header text-center">
                     TPLATE
@@ -52,6 +52,7 @@ export const LoginScreen = () => {
                                 name='username'
                                 value={username}
                                 onChange={handleInputChange}
+                                autoComplete="off"
                             />
                         </div>
                         <div className="form-group">
@@ -63,6 +64,7 @@ export const LoginScreen = () => {
                                 name='password'
                                 value={password}
                                 onChange={handleInputChange}
+                                autoComplete="off"
                             />
                         </div>
                 </div>

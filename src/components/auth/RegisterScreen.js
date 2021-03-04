@@ -44,7 +44,7 @@ export const RegisterScreen = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <div className="card">
                 <div className="card-header text-center">
                     SIGN UP
@@ -59,6 +59,7 @@ export const RegisterScreen = () => {
                             name='username'
                             value={username}
                             onChange={handleInputChange}
+                            autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
@@ -70,6 +71,7 @@ export const RegisterScreen = () => {
                             name='password'
                             value={password}
                             onChange={handleInputChange}
+                            autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
@@ -81,6 +83,7 @@ export const RegisterScreen = () => {
                             name='passwordCofirm'
                             value={passwordCofirm}
                             onChange={handleInputChange}
+                            autoComplete="off"
                         />
                     </div>
                 </div>

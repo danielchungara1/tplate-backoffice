@@ -51,6 +51,7 @@ export const ResetStep1Screen = () => {
                                 name='email'
                                 value={email}
                                 onChange={handleInputChange}
+                                autoComplete="off"
                             />
                         </div>
                 </div>
