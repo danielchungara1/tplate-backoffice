@@ -5,12 +5,14 @@ import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {login} from '../../services/loginService';
 import {types} from "../../types/types";
+import {resetStep2} from "../../services/resetPasswordService";
 
 export const ResetStep2Screen = () => {
 
     const initialForm = {
         code: '',
-        password: ''
+        password: '',
+        email:''
     };
 
     const {addToast} = useToasts();
@@ -18,21 +20,21 @@ export const ResetStep2Screen = () => {
     const history = useHistory()
 
     const [formValues, handleInputChange] = useForm(initialForm);
-    const {code, password} = formValues
+    const {code, password, email} = formValues
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // const response = await login(username, password);
-        //
-        // if (response.ok) {
-        //     dispatch({type: types.loginSuccess, payload: response.data})
-        //     history.push('/home')
-        //     addToast(response.message, {appearance: 'success'});
-        // } else {
-        //     dispatch({type: types.loginFailure})
-        //     addToast(response.message, {appearance: 'error'});
-        // }
+        const response = await resetStep2(email, code, password);
+
+        if (response.ok) {
+            dispatch({type: types.resetPassword2Success, payload: response.data})
+            history.push('/auth/login')
+            addToast(response.message, {appearance: 'success'});
+        } else {
+            dispatch({type: types.resetPassword2Failure})
+            addToast(response.message, {appearance: 'error'});
+        }
 
     }
 
@@ -44,7 +46,7 @@ export const ResetStep2Screen = () => {
                 </div>
                 <div className="card-body">
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Codigo de Reseto</label>
+                        <label htmlFor="exampleInputEmail1">Codigo</label>
                         <input
                             className="form-control"
                             type="text"
@@ -55,7 +57,18 @@ export const ResetStep2Screen = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Nuevo Password</label>
+                        <label htmlFor="exampleInputEmail1">Email</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Email"
+                            name='email'
+                            value={email}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Password</label>
                         <input
                             className="form-control"
                             type="password"

@@ -5,11 +5,12 @@ import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {login} from '../../services/loginService';
 import {types} from "../../types/types";
+import {resetStep1} from "../../services/resetPasswordService";
 
 export const ResetStep1Screen = () => {
 
     const initialForm = {
-        username: '',
+        email: '',
     };
 
     const {addToast} = useToasts();
@@ -17,22 +18,21 @@ export const ResetStep1Screen = () => {
     const history = useHistory()
 
     const [formValues, handleInputChange] = useForm(initialForm);
-    const {username} = formValues
+    const {email} = formValues
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // const response = await login(username, password);
-        //
-        // if (response.ok) {
-        //     dispatch({type: types.loginSuccess, payload: response.data})
-        //     history.push('/home')
-        //     addToast(response.message, {appearance: 'success'});
-        // } else {
-        //     dispatch({type: types.loginFailure})
-        //     addToast(response.message, {appearance: 'error'});
-        // }
+        const response = await resetStep1(email);
 
+        if (response.ok) {
+            dispatch({type: types.resetPassword1Success, payload: response.data})
+            history.push('/auth/reset-password/step2')
+            addToast(response.message, {appearance: 'success'});
+        } else {
+            dispatch({type: types.resetPassword1Failure})
+            addToast(response.message, {appearance: 'error'});
+        }
     }
 
     return (
@@ -47,9 +47,9 @@ export const ResetStep1Screen = () => {
                             <input
                                 className="form-control"
                                 type="text"
-                                placeholder="email@any.com"
-                                name='username'
-                                value={username}
+                                placeholder="Email"
+                                name='email'
+                                value={email}
                                 onChange={handleInputChange}
                             />
                         </div>
