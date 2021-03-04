@@ -1,0 +1,75 @@
+import React, {Fragment} from 'react'
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {useToasts} from 'react-toast-notifications';
+import {useForm} from '../../hooks/useForm';
+import {login} from '../../services/loginService';
+import {types} from "../../types/types";
+
+export const ResetStep2Screen = () => {
+
+    const initialForm = {
+        code: '',
+        password: ''
+    };
+
+    const {addToast} = useToasts();
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+    const [formValues, handleInputChange] = useForm(initialForm);
+    const {code, password} = formValues
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        // const response = await login(username, password);
+        //
+        // if (response.ok) {
+        //     dispatch({type: types.loginSuccess, payload: response.data})
+        //     history.push('/home')
+        //     addToast(response.message, {appearance: 'success'});
+        // } else {
+        //     dispatch({type: types.loginFailure})
+        //     addToast(response.message, {appearance: 'error'});
+        // }
+
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="card">
+                <div className="card-header text-center">
+                    Reset Password Paso 2
+                </div>
+                <div className="card-body">
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Codigo de Reseto</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Codigo"
+                            name='code'
+                            value={code}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Nuevo Password</label>
+                        <input
+                            className="form-control"
+                            type="password"
+                            placeholder="Password"
+                            name='password'
+                            value={password}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                </div>
+                <div className="card-footer text-muted text-center">
+                    <button type='submit' className={'btn btn-primary btn-block'}>Modificar Password</button>
+                </div>
+            </div>
+        </form>
+    )
+}
