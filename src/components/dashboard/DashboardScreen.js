@@ -5,9 +5,9 @@ export const DashboardScreen = () => {
 
     const {user} = useSelector(state => state.auth)
     return (
-        <div>
-            JournalScreen
-            <p>Welcome back <strong>{user.name}</strong></p>
+        <div className={"m-5"}>
+            <h1>Pagina en Construccion</h1>
+            <p><strong>{user.name}</strong> estamos trabajando para agregarla a la brevedad.</p>
         </div>
     )
 }

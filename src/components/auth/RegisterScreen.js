@@ -47,7 +47,7 @@ export const RegisterScreen = () => {
         <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-header text-center">
-                    Sing Up
+                    SIGN UP
                 </div>
                 <div className="card-body">
                     <div className="form-group">
