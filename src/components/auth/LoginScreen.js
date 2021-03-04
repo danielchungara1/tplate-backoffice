@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {useToasts} from 'react-toast-notifications';
@@ -20,6 +20,14 @@ export const LoginScreen = () => {
     const [formValues, handleInputChange] = useForm(initialForm);
     const {username, password} = formValues
 
+    const handleRecuperarPassword = () => {
+        history.push('/auth/reset-password/step1')
+    }
+
+    const handleCrearCuenta = () => {
+        history.push('/auth/register')
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -37,36 +45,42 @@ export const LoginScreen = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-header text-center">
                     TPLATE
                 </div>
                 <div className="card-body">
-                        <div className="form-group" >
-                            <label htmlFor="exampleInputEmail1">Username</label>
-                            <input
-                                className="form-control"
-                                type="text"
-                                placeholder="Username"
-                                name='username'
-                                value={username}
-                                onChange={handleInputChange}
-                                autoComplete="off"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Password</label>
-                            <input
-                                className="form-control password"
-                                type="text"
-                                placeholder="Password"
-                                name='password'
-                                value={password}
-                                onChange={handleInputChange}
-                                autoComplete="off"
-                            />
-                        </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Username</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Username"
+                            name='username'
+                            value={username}
+                            onChange={handleInputChange}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Password</label>
+                        <input
+                            className="form-control password"
+                            type="text"
+                            placeholder="Password"
+                            name='password'
+                            value={password}
+                            onChange={handleInputChange}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <button className="btn btn-link " type={"button"} onClick={handleRecuperarPassword}>
+                        <span className="text-dark">Recuperar Password</span>
+                    </button>
+                    <button className="btn btn-link" type={"button"} onClick={handleCrearCuenta}>
+                        <span className="text-dark">Crear cuenta</span>
+                    </button>
                 </div>
                 <div className="card-footer text-muted text-center">
                     <button type='submit' className={'btn btn-secondary btn-block'}>Login</button>
