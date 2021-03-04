@@ -31,3 +31,11 @@ html, body {
 .pointer {
   cursor: pointer;
 }
+.card {
+  min-width: 300px !important;
+}
+
+.card-header {
+  font-weight: 600;
+  color: dimgray;
+}
