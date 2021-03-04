@@ -5,7 +5,7 @@ import { store } from './store/store'
 import { ToastProvider } from 'react-toast-notifications'
 import './styles/module.scss'
 
-export const JournalApp = () => {
+export const App = () => {
     return (
         <Provider store={store}>
             <ToastProvider>

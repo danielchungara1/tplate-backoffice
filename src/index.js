@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { JournalApp } from './JournalApp';
+import { App } from './App';
 
 ReactDOM.render(
 
-    <JournalApp />
+    <App />
 ,
   document.getElementById('root')
 );
