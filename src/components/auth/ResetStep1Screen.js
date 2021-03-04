@@ -43,7 +43,7 @@ export const ResetStep1Screen = () => {
                 </div>
                 <div className="card-body">
                         <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Username o Email</label>
+                            <label htmlFor="exampleInputEmail1">Email</label>
                             <input
                                 className="form-control"
                                 type="text"

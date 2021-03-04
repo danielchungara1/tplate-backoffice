@@ -48,7 +48,7 @@ export const LoginScreen = () => {
                             <input
                                 className="form-control"
                                 type="text"
-                                placeholder="email@any.com"
+                                placeholder="Username"
                                 name='username'
                                 value={username}
                                 onChange={handleInputChange}
@@ -59,7 +59,7 @@ export const LoginScreen = () => {
                             <input
                                 className="form-control"
                                 type="password"
-                                placeholder="*********"
+                                placeholder="Password"
                                 name='password'
                                 value={password}
                                 onChange={handleInputChange}

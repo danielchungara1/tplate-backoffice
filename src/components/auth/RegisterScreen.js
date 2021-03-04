@@ -55,7 +55,7 @@ export const RegisterScreen = () => {
                         <input
                             className="form-control"
                             type="text"
-                            placeholder="email@any.com"
+                            placeholder="Username"
                             name='username'
                             value={username}
                             onChange={handleInputChange}
@@ -66,18 +66,18 @@ export const RegisterScreen = () => {
                         <input
                             className="form-control"
                             type="password"
-                            placeholder="*********"
+                            placeholder="Password"
                             name='password'
                             value={password}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Confirm Password</label>
+                        <label htmlFor="exampleInputEmail1">Repetir Password</label>
                         <input
                             className="form-control"
                             type="password"
-                            placeholder="*********"
+                            placeholder="Password"
                             name='passwordCofirm'
                             value={passwordCofirm}
                             onChange={handleInputChange}
