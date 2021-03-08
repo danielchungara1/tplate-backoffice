@@ -95,7 +95,6 @@ export const LoginScreen = () => {
                             : <BeatLoader loading={true} color={"white"} size={10}/>
                         }
                     </button>
-
                 </div>
             </div>
         </form>

@@ -59,10 +59,12 @@ export const ResetStep1Screen = () => {
                     </div>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-secondary btn-block mb-1'} disabled={loading} >
-                        Enviar codigo
+                    <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>
+                        { !loading
+                            ? <span>Enviar codigo</span>
+                            : <BeatLoader loading={true} color={"white"} size={10}/>
+                        }
                     </button>
-                    <BeatLoader loading={loading} color={"gray"} size={10} margin={5} />
                 </div>
             </div>
         </form>
