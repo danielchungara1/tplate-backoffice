@@ -5,7 +5,9 @@ import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {login} from '../../services/loginService';
 import {types} from "../../types/types";
-import {BeatLoader} from "react-spinners";
+import {
+    BeatLoader
+} from "react-spinners";
 
 export const LoginScreen = () => {
 
@@ -87,8 +89,13 @@ export const LoginScreen = () => {
                     </button>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>Login</button>
-                    <BeatLoader loading={loading} color={"gray"} size={10} margin={5} />
+                    <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>
+                        { !loading
+                            ? <span>Login</span>
+                            : <BeatLoader loading={true} color={"white"} size={10}/>
+                        }
+                    </button>
+
                 </div>
             </div>
         </form>
