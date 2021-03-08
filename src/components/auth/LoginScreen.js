@@ -32,7 +32,7 @@ export const LoginScreen = () => {
         history.push('/auth/register')
     }
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
 
         setLoading(true)
@@ -43,6 +43,8 @@ export const LoginScreen = () => {
             dispatch({type: types.loginSuccess, payload: response.data})
             history.push('/home')
             addToast(response.message, {appearance: 'success'});
+            console.log(response.data)
+            localStorage.setItem('token', response.data.token)
         } else {
             dispatch({type: types.loginFailure})
             addToast(response.message, {appearance: 'error'});
@@ -51,7 +53,7 @@ export const LoginScreen = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
             <div className="card">
                 <div className="card-header text-center">
                     TPLATE
