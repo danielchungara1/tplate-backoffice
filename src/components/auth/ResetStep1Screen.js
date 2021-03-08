@@ -5,7 +5,7 @@ import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {types} from "../../types/types";
 import {resetStep1} from "../../services/resetPasswordService";
-import {BarLoader, BeatLoader, CircleLoader, ClipLoader} from "react-spinners";
+import { BeatLoader} from "react-spinners";
 
 export const ResetStep1Screen = () => {
 

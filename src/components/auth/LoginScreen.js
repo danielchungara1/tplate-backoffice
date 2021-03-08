@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {login} from '../../services/loginService';
 import {types} from "../../types/types";
+import {BeatLoader} from "react-spinners";
 
 export const LoginScreen = () => {
 
@@ -16,6 +17,7 @@ export const LoginScreen = () => {
     const {addToast} = useToasts();
     const dispatch = useDispatch()
     const history = useHistory()
+    const [loading, setLoading] = useState(false);
 
     const [formValues, handleInputChange] = useForm(initialForm);
     const {username, password} = formValues
@@ -31,7 +33,9 @@ export const LoginScreen = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        setLoading(true)
         const response = await login(username, password);
+        setLoading(false)
 
         if (response.ok) {
             dispatch({type: types.loginSuccess, payload: response.data})
@@ -83,7 +87,8 @@ export const LoginScreen = () => {
                     </button>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-secondary btn-block'}>Login</button>
+                    <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>Login</button>
+                    <BeatLoader loading={loading} color={"gray"} size={10} margin={5} />
                 </div>
             </div>
         </form>
