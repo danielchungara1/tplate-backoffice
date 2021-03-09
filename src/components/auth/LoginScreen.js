@@ -1,3 +1,6 @@
+// *****************************************************************
+//                                              Imports
+// *****************************************************************
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -5,33 +8,28 @@ import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {login} from '../../services/loginService';
 import {types} from "../../types/types";
-import {
-    BeatLoader
-} from "react-spinners";
+import {BeatLoader} from "react-spinners";
 
 export const LoginScreen = () => {
 
-    const initialForm = {
-        username: '',
-        password: ''
-    };
-
+    // *****************************************************************
+    //                                              Hooks
+    // *****************************************************************
     const {addToast} = useToasts();
     const dispatch = useDispatch()
     const history = useHistory()
     const [loading, setLoading] = useState(false);
+    const [{username, password} , handleInputChange] = useForm({ username: '', password: ''});
 
-    const [formValues, handleInputChange] = useForm(initialForm);
-    const {username, password} = formValues
-
+    // *****************************************************************
+    //                                              Handlers
+    // *****************************************************************
     const handleRecuperarPassword = () => {
         history.push('/auth/reset-password/step1')
     }
-
     const handleCrearCuenta = () => {
         history.push('/auth/register')
     }
-
     const handleLogin = async (e) => {
         e.preventDefault()
 
@@ -41,10 +39,9 @@ export const LoginScreen = () => {
 
         if (response.ok) {
             dispatch({type: types.loginSuccess, payload: response.data})
-            history.push('/home')
             addToast(response.message, {appearance: 'success'});
-            console.log(response.data)
             localStorage.setItem('token', response.data.token)
+            history.push('/dashboard')
         } else {
             dispatch({type: types.loginFailure})
             addToast(response.message, {appearance: 'error'});
@@ -52,6 +49,9 @@ export const LoginScreen = () => {
 
     }
 
+    // *****************************************************************
+    //                                              JSX
+    // *****************************************************************
     return (
         <form onSubmit={handleLogin}>
             <div className="card">

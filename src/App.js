@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppRouter } from './router/AppRouter'
+import { RouterModule } from './router/RouterModule'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import { ToastProvider } from 'react-toast-notifications'
@@ -9,7 +9,7 @@ export const App = () => {
     return (
         <Provider store={store}>
             <ToastProvider>
-                <AppRouter />
+                <RouterModule />
             </ToastProvider>
         </Provider>
     )
