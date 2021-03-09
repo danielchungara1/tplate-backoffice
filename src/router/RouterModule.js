@@ -17,17 +17,6 @@ import {ResetStep2Screen} from "../components/auth/ResetStep2Screen";
 export const RouterModule = () => {
     return (
         <Router>
-            {/*<Switch>*/}
-            {/*    <Route path="/auth">*/}
-            {/*        <PublicRoute/>*/}
-            {/*    </Route>*/}
-            {/*    <Route path="/dashboard">*/}
-            {/*        <DashboardScreen/>*/}
-            {/*    </Route>*/}
-            {/*    <Route path="/">*/}
-            {/*        <Redirect to="/auth/login"/>*/}
-            {/*    </Route>*/}
-            {/*</Switch>*/}
             <Switch>
                 {/*Publics Routes*/}
                 <PublicRoute component={LoginScreen} path="/auth/login" exact/>
@@ -38,10 +27,9 @@ export const RouterModule = () => {
                 {/*Private Routes*/}
                 <PrivateRoute component={DashboardScreen} path="/dashboard" exact/>
 
-                {/*Default*/}
-                {/*<Route path="/">*/}
-                {/*    <Redirect to="/auth/login"/>*/}
-                {/*</Route>*/}
+                <Route path="/">
+                    <Redirect to="/auth/login"/>
+                </Route>
             </Switch>
         </Router>
     )
