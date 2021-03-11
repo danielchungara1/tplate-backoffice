@@ -35,35 +35,49 @@ export const LoginScreen = () => {
         history.push('/auth/register')
     }
 
-    const usernameValidation =  () => {
+    const validateUsername = () => {
+        let response = {isValid: true, message: ''};
         if (!username) {
-            return 'Este campo es requerido.';
+            response.message = 'Este campo es requerido.';
+            response.isValid = false;
+        } else if (!username.includes('@') || !username.includes('.')) {
+            response.message = 'Formato de mail no valido.';
+            response.isValid = false;
         }
-        if (!username.includes('@') || !username.includes('.')) {
-            return 'Formato de mail no valido.';
-        }
-        return ''
+        return response;
     }
 
-    const passwordValidation =  () => {
+    const validatePassword = () => {
+        let response = {isValid: true, message: ''};
         if (!password) {
-            return 'Este campo es requerido.';
+            response.message = 'Este campo es requerido.';
+            response.isValid = false;
+        } else if (password.length < 4) {
+            response.message = 'Debe tener al menos 4 caracteres.';
+            response.isValid = false;
         }
-        if (password.length < 4) {
-            return  'Debe tener al menos 4 caracteres.';
-        }
-        return ''
+        return response;
     }
 
     const isValidForm = () => {
+        let valid = true;
 
-        const error1 = usernameValidation();
-        setUsernameError(error1);
+        const usernameValidator = validateUsername();
+        if ( ! usernameValidator.isValid ) {
+            setUsernameError(usernameValidator.message);
+            valid = false;
+        } else {
+            setUsernameError('');
+        }
 
-        const error2 = passwordValidation();
-        setPasswordError(error2);
-
-        return error1 ===  '' && error2 ===  '';
+        const passwordValidator = validatePassword();
+        if ( ! passwordValidator.isValid ) {
+            setPasswordError(passwordValidator.message);
+            valid = false;
+        } else {
+            setPasswordError('');
+        }
+        return valid;
 
     }
 
@@ -72,7 +86,7 @@ export const LoginScreen = () => {
         setSubmit(true);
 
         //Validaciones de formulario
-        if (!isValidForm()){
+        if (!isValidForm()) {
             addToast('Hay algunos errores.', {appearance: 'error'});
             return
         }
