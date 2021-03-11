@@ -1,3 +1,6 @@
+// *****************************************************************
+//                                              Imports
+// *****************************************************************
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -9,20 +12,61 @@ import { BeatLoader} from "react-spinners";
 
 export const ResetStep1Screen = () => {
 
-    const initialForm = {
-        email: '',
-    };
-
+    // *****************************************************************
+    //                                              Hooks
+    // *****************************************************************
     const {addToast} = useToasts();
     const dispatch = useDispatch()
     const history = useHistory()
     const [loading, setLoading] = useState(false);
-
-    const [formValues, handleInputChange] = useForm(initialForm);
+    const [formValues, handleInputChange] = useForm({ email: '' });
     const {email} = formValues
 
+    // Form Hooks
+    const [emailError, setEmailError] = useState('');
+    const [submit, setSubmit] = useState(false);
+
+    // *****************************************************************
+    //                                              Form Validation
+    // *****************************************************************
+    const validateUsername = () => {
+        let response = {isValid: true, message: ''};
+        if (!email) {
+            response.message = 'Este campo es requerido.';
+            response.isValid = false;
+        } else if (!email.includes('@') || !email.includes('.')) {
+            response.message = 'Formato de mail no valido.';
+            response.isValid = false;
+        }
+        return response;
+    }
+
+    const isValidForm = () => {
+        let valid = true;
+
+        const usernameValidator = validateUsername();
+        if ( ! usernameValidator.isValid ) {
+            setEmailError(usernameValidator.message);
+            valid = false;
+        } else {
+            setEmailError('');
+        }
+
+        return valid;
+    }
+
+    // *****************************************************************
+    //                                              Handlers
+    // *****************************************************************
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setSubmit(true);
+
+        //Validaciones de formulario
+        if (!isValidForm()) {
+            // addToast('Hay algunos errores.', {appearance: 'error'});
+            return
+        }
 
         setLoading(true)
         const response = await resetStep1(email);
@@ -38,6 +82,9 @@ export const ResetStep1Screen = () => {
         }
     }
 
+    // *****************************************************************
+    //                                              JSX
+    // *****************************************************************
     return (
         <form onSubmit={handleSubmit}>
             <div className="card">
@@ -56,6 +103,7 @@ export const ResetStep1Screen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
+                        {(emailError && submit) && <div className={'auth__input_error'}>{emailError}</div>}
                     </div>
                 </div>
                 <div className="card-footer text-muted text-center">
