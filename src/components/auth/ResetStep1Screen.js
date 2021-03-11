@@ -73,7 +73,7 @@ export const ResetStep1Screen = () => {
         setLoading(false)
 
         if (response.ok) {
-            dispatch({type: types.resetPassword1Success, payload: response.data})
+            dispatch({type: types.resetPassword1Success, payload: email})
             history.push('/auth/reset-password/step2')
             addToast(response.message, {appearance: 'success'});
         } else {

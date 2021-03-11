@@ -1,5 +1,8 @@
-import React from 'react'
-import {useDispatch} from 'react-redux';
+// *****************************************************************
+//                                              Imports
+// *****************************************************************
+import React, {useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
@@ -8,23 +11,80 @@ import {resetStep2} from "../../services/resetPasswordService";
 
 export const ResetStep2Screen = () => {
 
-    const initialForm = {
-        code: '',
-        password: '',
-        email:''
-    };
-
+    // *****************************************************************
+    //                                              Hooks
+    // *****************************************************************
     const {addToast} = useToasts();
     const dispatch = useDispatch()
     const history = useHistory()
+    const resetEmail = useSelector(state => state.auth.resetEmail)
 
-    const [formValues, handleInputChange] = useForm(initialForm);
-    const {code, password, email} = formValues
+    // Form Hooks
+    const [formValues, handleInputChange] = useForm({ code:'', password: '' });
+    const {code, password} = formValues
+    const [codeError, setCodeError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [submit, setSubmit] = useState(false);
 
+    // *****************************************************************
+    //                                              Form Validation
+    // *****************************************************************
+    const validateCode = () => {
+        let response = {isValid: true, message: ''};
+        if (!code) {
+            response.message = 'Este campo es requerido.';
+            response.isValid = false;
+        }
+        return response;
+    }
+    const validatePassword = () => {
+        let response = {isValid: true, message: ''};
+        if (!password) {
+            response.message = 'Este campo es requerido.';
+            response.isValid = false;
+        } else if (password.length < 6 ) {
+            response.message = 'Debe tener al menos 6 caracteres.';
+            response.isValid = false;
+        }
+        return response;
+    }
+
+    const isValidForm = () => {
+        let valid = true;
+
+        const codeValidator = validateCode();
+        if ( ! codeValidator.isValid ) {
+            setCodeError(codeValidator.message);
+            valid = false;
+        } else {
+            setCodeError('');
+        }
+
+        const passwordValidator = validatePassword();
+        if ( ! passwordValidator.isValid ) {
+            setPasswordError(passwordValidator.message);
+            valid = false;
+        } else {
+            setPasswordError('');
+        }
+
+        return valid;
+    }
+
+    // *****************************************************************
+    //                                              Handlers
+    // *****************************************************************
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setSubmit(true);
 
-        const response = await resetStep2(email, code, password);
+        //Validaciones de formulario
+        if (!isValidForm()) {
+            // addToast('Hay algunos errores.', {appearance: 'error'});
+            return
+        }
+
+        const response = await resetStep2(resetEmail, code, password);
 
         if (response.ok) {
             dispatch({type: types.resetPassword2Success, payload: response.data})
@@ -37,6 +97,9 @@ export const ResetStep2Screen = () => {
 
     }
 
+    // *****************************************************************
+    //                                              JSX
+    // *****************************************************************
     return (
         <form onSubmit={handleSubmit}>
             <div className="card">
@@ -55,18 +118,7 @@ export const ResetStep2Screen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            placeholder="Email"
-                            name='email'
-                            value={email}
-                            onChange={handleInputChange}
-                            autoComplete="off"
-                        />
+                        {(codeError && submit) && <div className={'auth__input_error'}>{codeError}</div>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Password</label>
@@ -79,6 +131,7 @@ export const ResetStep2Screen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
+                        {(passwordError && submit) && <div className={'auth__input_error'}>{passwordError}</div>}
                     </div>
                 </div>
                 <div className="card-footer text-muted text-center">
