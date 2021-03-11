@@ -19,6 +19,8 @@ export const LoginScreen = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [loading, setLoading] = useState(false);
+
+    // Form Hooks
     const [{username, password}, handleInputChange] = useForm({username: '', password: ''});
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -69,8 +71,8 @@ export const LoginScreen = () => {
         } else {
             setPasswordError('');
         }
-        return valid;
 
+        return valid;
     }
 
     // *****************************************************************
