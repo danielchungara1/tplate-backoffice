@@ -23,18 +23,10 @@ export const LoginScreen = () => {
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [submit, setSubmit] = useState(false);
-    // const [formValid, setFormValid] = useState(true);
-    // *****************************************************************
-    //                                              Handlers
-    // *****************************************************************
-    const handleRecuperarPassword = () => {
-        history.push('/auth/reset-password/step1')
-    }
 
-    const handleCrearCuenta = () => {
-        history.push('/auth/register')
-    }
-
+    // *****************************************************************
+    //                                              Form Validation
+    // *****************************************************************
     const validateUsername = () => {
         let response = {isValid: true, message: ''};
         if (!username) {
@@ -79,6 +71,17 @@ export const LoginScreen = () => {
         }
         return valid;
 
+    }
+
+    // *****************************************************************
+    //                                              Handlers
+    // *****************************************************************
+    const handleRecuperarPassword = () => {
+        history.push('/auth/reset-password/step1')
+    }
+
+    const handleCrearCuenta = () => {
+        history.push('/auth/register')
     }
 
     const handleLogin = async (e) => {
