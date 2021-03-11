@@ -46,9 +46,6 @@ export const LoginScreen = () => {
         if (!password) {
             response.message = 'Este campo es requerido.';
             response.isValid = false;
-        } else if (password.length < 4) {
-            response.message = 'Debe tener al menos 4 caracteres.';
-            response.isValid = false;
         }
         return response;
     }
@@ -92,7 +89,7 @@ export const LoginScreen = () => {
 
         //Validaciones de formulario
         if (!isValidForm()) {
-            addToast('Hay algunos errores.', {appearance: 'error'});
+            // addToast('Hay algunos errores.', {appearance: 'error'});
             return
         }
 
@@ -134,7 +131,7 @@ export const LoginScreen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
-                        {(usernameError && submit) && <div style={{color: 'red'}}>{usernameError}</div>}
+                        {(usernameError && submit) && <div className={'auth__input_error'}>{usernameError}</div>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Password</label>
@@ -147,14 +144,17 @@ export const LoginScreen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
-                        {(passwordError && submit) && <div style={{color: 'red'}}>{passwordError}</div>}
+                        {(passwordError && submit) && <div className={'auth__input_error'}>{passwordError}</div>}
                     </div>
-                    <button className="btn btn-link " type={"button"} onClick={handleRecuperarPassword}>
-                        <span className="text-dark">Recuperar Password</span>
-                    </button>
-                    <button className="btn btn-link" type={"button"} onClick={handleCrearCuenta}>
-                        <span className="text-dark">Crear cuenta</span>
-                    </button>
+                    <div className={'auth_links_container'}>
+                        <button className="btn btn-link pl-0" type={"button"} onClick={handleRecuperarPassword}>
+                            <span className="text-dark auth_links_text">Recuperar Password</span>
+                        </button>
+                        <button className="btn btn-link pr-0" type={"button"} onClick={handleCrearCuenta}>
+                            <span className="text-dark auth_links_text">Crear cuenta</span>
+                        </button>
+                    </div>
+
                 </div>
                 <div className="card-footer text-muted text-center">
                     <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>

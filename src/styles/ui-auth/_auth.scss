@@ -36,3 +36,19 @@
 .auth__input_body {
   // Input Body
 }
+.auth__input_error {
+  // Input error
+  font-size: 14px;
+  color: red;
+  margin-top: 5px;
+}
+
+.auth_links_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth_links_text {
+  color: dimgray;
+  font-size: 14px;
+}
