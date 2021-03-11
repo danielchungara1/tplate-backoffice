@@ -19,20 +19,65 @@ export const LoginScreen = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [loading, setLoading] = useState(false);
-    const [{username, password} , handleInputChange] = useForm({ username: '', password: ''});
-
+    const [{username, password}, handleInputChange] = useForm({username: '', password: ''});
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [submit, setSubmit] = useState(false);
+    // const [formValid, setFormValid] = useState(true);
     // *****************************************************************
     //                                              Handlers
     // *****************************************************************
     const handleRecuperarPassword = () => {
         history.push('/auth/reset-password/step1')
     }
+
     const handleCrearCuenta = () => {
         history.push('/auth/register')
     }
-    const handleLogin = async (e) => {
-        e.preventDefault()
 
+    const usernameValidation =  () => {
+        if (!username) {
+            return 'Este campo es requerido.';
+        }
+        if (!username.includes('@') || !username.includes('.')) {
+            return 'Formato de mail no valido.';
+        }
+        return ''
+    }
+
+    const passwordValidation =  () => {
+        if (!password) {
+            return 'Este campo es requerido.';
+        }
+        if (password.length < 4) {
+            return  'Debe tener al menos 4 caracteres.';
+        }
+        return ''
+    }
+
+    const isValidForm = () => {
+
+        const error1 = usernameValidation();
+        setUsernameError(error1);
+
+        const error2 = passwordValidation();
+        setPasswordError(error2);
+
+        return error1 ===  '' && error2 ===  '';
+
+    }
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setSubmit(true);
+
+        //Validaciones de formulario
+        if (!isValidForm()){
+            addToast('Hay algunos errores.', {appearance: 'error'});
+            return
+        }
+
+        //Request
         setLoading(true)
         const response = await login(username, password);
         setLoading(false)
@@ -70,6 +115,7 @@ export const LoginScreen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
+                        {(usernameError && submit) && <div style={{color: 'red'}}>{usernameError}</div>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Password</label>
@@ -82,6 +128,7 @@ export const LoginScreen = () => {
                             onChange={handleInputChange}
                             autoComplete="off"
                         />
+                        {(passwordError && submit) && <div style={{color: 'red'}}>{passwordError}</div>}
                     </div>
                     <button className="btn btn-link " type={"button"} onClick={handleRecuperarPassword}>
                         <span className="text-dark">Recuperar Password</span>
@@ -92,7 +139,7 @@ export const LoginScreen = () => {
                 </div>
                 <div className="card-footer text-muted text-center">
                     <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>
-                        { !loading
+                        {!loading
                             ? <span>Login</span>
                             : <BeatLoader loading={true} color={"white"} size={10}/>
                         }
