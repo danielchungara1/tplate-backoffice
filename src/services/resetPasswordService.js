@@ -10,7 +10,7 @@ export const resetStep1 = async (email) => {
         return {'ok': true, 'message': data.message, 'data': data.data};
 
     } catch ({response}) {
-        let message = 'Error al resetear el password.';
+        let message = 'Error al cambiar la contraseña.';
         if (response?.status === 409) {
             message = response.data.message;
         }
@@ -29,7 +29,7 @@ export const resetStep2 = async (email, code, password) => {
         return {'ok': true, 'message': data.message, 'data': data.data};
 
     } catch ({response}) {
-        let message = 'Error al resetear el password.';
+        let message = 'Error al cambiar la contraseña.';
         if (response?.status === 409) {
             message = response.data.message;
         }

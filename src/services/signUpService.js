@@ -10,7 +10,7 @@ export const signUp = async (username, password) => {
         return {'ok': true, 'message': data.message, 'data': data.data};
 
     } catch ({response}) {
-        let message = 'Error al loguear el usuario.';
+        let message = 'Error al crear crear cuenta.';
         if (response?.status === 409) {
             message = response.data.message;
         }
