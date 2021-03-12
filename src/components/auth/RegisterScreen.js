@@ -36,7 +36,7 @@ export const RegisterScreen = () => {
             response.message = 'Este campo es requerido.';
             response.isValid = false;
         } else if (!username.includes('@') || !username.includes('.')) {
-            response.message = 'Formato de mail no valido.';
+            response.message = 'Correo no valido.';
             response.isValid = false;
         }
         return response;
@@ -111,15 +111,15 @@ export const RegisterScreen = () => {
         <form onSubmit={handleSubmit} >
             <div className="card">
                 <div className="card-header text-center">
-                    SIGN UP
+                    NUEVA CUENTA
                 </div>
                 <div className="card-body">
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Username</label>
+                        <label htmlFor="exampleInputEmail1">Correo electrónico</label>
                         <input
                             className="form-control"
                             type="text"
-                            placeholder="Username"
+                            placeholder="Correo electrónico"
                             name='username'
                             value={username}
                             onChange={handleInputChange}
@@ -128,11 +128,11 @@ export const RegisterScreen = () => {
                         {(usernameError && submit) && <div className={'auth__input_error'}>{usernameError}</div>}
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Password</label>
+                        <label htmlFor="exampleInputEmail1">Contraseña</label>
                         <input
                             className="form-control password"
                             type="text"
-                            placeholder="Password"
+                            placeholder="Contraseña"
                             name='password'
                             value={password}
                             onChange={handleInputChange}
@@ -144,7 +144,7 @@ export const RegisterScreen = () => {
                 <div className="card-footer text-muted text-center">
                     <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>
                         {!loading
-                            ? <span>Sign up</span>
+                            ? <span>Crear cuenta</span>
                             : <BeatLoader loading={true} color={"white"} size={10}/>
                         }
                     </button>

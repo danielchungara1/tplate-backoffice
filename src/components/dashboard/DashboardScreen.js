@@ -16,10 +16,10 @@ export const DashboardScreen = () => {
     }
 
     return (
-        <div className={"m-5"}>
+        <div className={"container-fluid p-5"}>
             <h1>Pagina en Construccion</h1>
             <p><strong>{user?.name}</strong> estamos trabajando para agregarla a la brevedad.</p>
-            <button type='button' className={'btn btn-secondary btn-block'} onClick={handleLogout}>
+            <button type='button' className={'btn btn-secondary'} onClick={handleLogout}>
                 <span>Logout</span>
             </button>
         </div>

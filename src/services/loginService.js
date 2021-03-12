@@ -10,7 +10,7 @@ export const login = async (username, password) => {
         return {'ok': true, 'message': data.message, 'data': data.data};
 
     } catch ({response}) {
-        let message = 'Error al loguear el usuario.';
+        let message = 'Error al iniciar sesión.';
         if (response?.status === 409) {
             message = response.data.message;
         }

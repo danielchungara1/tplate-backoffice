@@ -35,7 +35,7 @@ export const ResetStep1Screen = () => {
             response.message = 'Este campo es requerido.';
             response.isValid = false;
         } else if (!email.includes('@') || !email.includes('.')) {
-            response.message = 'Formato de mail no valido.';
+            response.message = 'Correo no valido.';
             response.isValid = false;
         }
         return response;
@@ -89,15 +89,15 @@ export const ResetStep1Screen = () => {
         <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-header text-center">
-                    Recuperar Password (paso 1)
+                    Recuperar Contraseña (paso 1)
                 </div>
                 <div className="card-body">
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email</label>
+                        <label htmlFor="exampleInputEmail1">Correo electrónico</label>
                         <input
                             className="form-control"
                             type="text"
-                            placeholder="Email"
+                            placeholder="Correo electrónico"
                             name='email'
                             value={email}
                             onChange={handleInputChange}
@@ -109,7 +109,7 @@ export const ResetStep1Screen = () => {
                 <div className="card-footer text-muted text-center">
                     <button type='submit' className={'btn btn-secondary btn-block'} disabled={loading}>
                         { !loading
-                            ? <span>Enviar codigo</span>
+                            ? <span>Enviar Código</span>
                             : <BeatLoader loading={true} color={"white"} size={10}/>
                         }
                     </button>
