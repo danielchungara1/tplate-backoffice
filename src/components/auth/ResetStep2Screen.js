@@ -104,15 +104,15 @@ export const ResetStep2Screen = () => {
         <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-header text-center">
-                    Recuperar Password (paso 2)
+                    Recuperar Contraseña (paso 2)
                 </div>
                 <div className="card-body">
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Codigo</label>
+                        <label htmlFor="exampleInputEmail1">Código</label>
                         <input
                             className="form-control"
                             type="text"
-                            placeholder="Codigo"
+                            placeholder="Código"
                             name='code'
                             value={code}
                             onChange={handleInputChange}
@@ -121,11 +121,11 @@ export const ResetStep2Screen = () => {
                         {(codeError && submit) && <div className={'auth__input_error'}>{codeError}</div>}
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Password</label>
+                        <label htmlFor="exampleInputEmail1">Nueva Contraseña</label>
                         <input
                             className="form-control password"
                             type="text"
-                            placeholder="Password"
+                            placeholder="Nueva Contraseña"
                             name='password'
                             value={password}
                             onChange={handleInputChange}
@@ -135,7 +135,7 @@ export const ResetStep2Screen = () => {
                     </div>
                 </div>
                 <div className="card-footer text-muted text-center">
-                    <button type='submit' className={'btn btn-secondary btn-block'}>Modificar Password</button>
+                    <button type='submit' className={'btn btn-secondary btn-block'}>Cambiar Contraseña</button>
                 </div>
             </div>
         </form>
