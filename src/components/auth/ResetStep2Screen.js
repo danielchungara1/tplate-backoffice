@@ -104,7 +104,7 @@ export const ResetStep2Screen = () => {
         <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-header text-center">
-                    Recuperar Contraseña (paso 2)
+                    Cambio de Contraseña (paso 2)
                 </div>
                 <div className="card-body">
                     <div className="form-group">

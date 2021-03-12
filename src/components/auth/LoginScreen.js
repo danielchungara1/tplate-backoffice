@@ -148,7 +148,7 @@ export const LoginScreen = () => {
                     </div>
                     <div className={'auth_links_container'}>
                         <button className="btn btn-link pl-0" type={"button"} onClick={handleRecuperarPassword}>
-                            <span className="text-dark auth_links_text">Recuperar Contraseña</span>
+                            <span className="text-dark auth_links_text">Olvide la contraseña</span>
                         </button>
                         <button className="btn btn-link pr-0" type={"button"} onClick={handleCrearCuenta}>
                             <span className="text-dark auth_links_text">Crear cuenta</span>

@@ -89,7 +89,7 @@ export const ResetStep1Screen = () => {
         <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-header text-center">
-                    Recuperar Contraseña (paso 1)
+                    Cambio de Contraseña (paso 1)
                 </div>
                 <div className="card-body">
                     <div className="form-group">

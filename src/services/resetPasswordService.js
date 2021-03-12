@@ -10,7 +10,7 @@ export const resetStep1 = async (email) => {
         return {'ok': true, 'message': data.message, 'data': data.data};
 
     } catch ({response}) {
-        let message = 'Error al recuperar contraseña.';
+        let message = 'Error al cambiar contraseña.';
         if (response?.status === 409) {
             message = response.data.message;
         }
