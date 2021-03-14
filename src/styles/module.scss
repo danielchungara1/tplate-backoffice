@@ -1,9 +1,14 @@
 /********************************************************
     Partial Collection
 *********************************************************/
+// Themes
+@import 'themes/dark_theme';
+@import 'themes/light_theme';
+
+//Mixins
+@import 'mixins/whenDarkMixin';
 
 // Commons
-@import "commons/variables";
 @import "commons/global";
 
 // UI Components

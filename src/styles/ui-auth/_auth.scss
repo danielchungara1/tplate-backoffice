@@ -1,54 +1,72 @@
 .auth__layout {
   // Layout general
-    align-items: center;
-    background-color: $bg-primary-1;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-}
-.auth__card {
-  // Card
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  display: flex;
   justify-content: center;
-  padding: 15px;
-  border: red 1px solid;
-}
-.auth__card_header {
-  // Card Header
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
 
+  background-color: #EDEDED;
+  @include whenDark {
+    background-color: #222222;
+  }
 }
-.auth__card_body {
-  // Card Body
-}
-.auth__card_footer {
- // Card footer
-}
-.auth__input {
-  // Input Controls
-}
-.auth__input_title {
-  // Input title
-}
-.auth__input_body {
-  // Input Body
-}
+
 .auth__input_error {
   // Input error
   font-size: 14px;
-  color: red;
   margin-top: 5px;
+
+  color: #F00;
+  @include whenDark{
+    color: #FF5500;
+  }
 }
 
 .auth_links_container {
+  // Footer Links
   display: flex;
   justify-content: space-between;
 }
 
 .auth_links_text {
-  color: dimgray;
   font-size: 14px;
+
+  color: #696969;
+  @include whenDark{
+    color: #FFF;
+    opacity: 0.8;
+  }
+}
+
+.card {
+  @include whenDark {
+    background-color: #232830;
+  }
+}
+
+.card-header {
+  @include whenDark {
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #FFF;
+  }
+}
+
+.card-footer {
+  @include whenDark {
+    color: rgba(255, 255, 255, 0.85);
+    border-top: 1px solid #FFF;
+  }
+}
+
+.btn-secondary {
+  @include whenDark {
+    color: #FFF;
+    background-color: rgb(0, 255, 0);
+
+    &:hover{
+      background-color: rgba(0, 255, 0, 0.35)!important;
+    }
+  }
 }
