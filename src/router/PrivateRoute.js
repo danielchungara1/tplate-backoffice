@@ -20,11 +20,13 @@ const PrivateRoute = ({component: Component, ...rest}) => {
 
         // Show the component only when the user is logged in
         // Otherwise, redirect the user to /login page
-        <Route {...rest} render={props => (
-            localStorage.getItem('token')
-                ? <Component {...props} />
-                : <Redirect to="/auth/login"/>
-        )}/>
+        <div className={'dashboard__layout'}>
+            <Route {...rest} render={props => (
+                localStorage.getItem('token')
+                    ? <Component {...props} />
+                    : <Redirect to="/auth/login"/>
+            )}/>
+        </div>
     );
 };
 
