@@ -8,6 +8,7 @@ import {useToasts} from 'react-toast-notifications';
 import {useForm} from '../../hooks/useForm';
 import {types} from "../../types/types";
 import {resetStep2} from "../../services/resetPasswordService";
+import {toastDismiss} from "../../config/toastConfig";
 
 export const ResetStep2Screen = () => {
 
@@ -89,10 +90,10 @@ export const ResetStep2Screen = () => {
         if (response.ok) {
             dispatch({type: types.resetPassword2Success, payload: response.data})
             history.push('/auth/login')
-            addToast(response.message, {appearance: 'success'});
+            addToast(response.message, {appearance: 'success' , ...toastDismiss});
         } else {
             dispatch({type: types.resetPassword2Failure})
-            addToast(response.message, {appearance: 'error'});
+            addToast(response.message, {appearance: 'error' , ...toastDismiss});
         }
 
     }
