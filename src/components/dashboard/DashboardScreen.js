@@ -2,6 +2,7 @@ import React from 'react'
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {useToasts} from "react-toast-notifications";
+import {toastDismiss} from "../../config/toastConfig";
 
 export const DashboardScreen = () => {
 
@@ -12,7 +13,7 @@ export const DashboardScreen = () => {
     const handleLogout = () => {
         localStorage.clear();
         history.push('/auth/login')
-        addToast('Sesion cerrada correctamente.', {appearance: 'success'});
+        addToast('Sesion cerrada correctamente.', {appearance: 'success' , ...toastDismiss});
     }
 
     return (
