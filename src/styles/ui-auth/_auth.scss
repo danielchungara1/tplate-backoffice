@@ -14,7 +14,7 @@
   margin-top: 5px;
 
   color: #F00;
-  @include whenDark{
+  @include whenDark {
     color: #FF5500;
   }
 }
@@ -29,7 +29,7 @@
   font-size: 14px;
 
   color: #696969;
-  @include whenDark{
+  @include whenDark {
     color: #FFF;
     opacity: 0.8;
   }
@@ -60,8 +60,8 @@
     color: #FFF;
     background-color: #208A32;
 
-    &:hover{
-      background-color: rgba(0, 255, 0, 0.35)!important;
+    &:hover {
+      background-color: rgba(0, 255, 0, 0.35) !important;
     }
   }
 }
