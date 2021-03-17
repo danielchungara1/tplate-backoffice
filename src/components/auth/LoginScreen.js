@@ -9,6 +9,7 @@ import {useForm} from '../../hooks/useForm';
 import {login} from '../../services/loginService';
 import {types} from "../../types/types";
 import {BeatLoader} from "react-spinners";
+import {toastDismiss} from "../../config/toastConfig";
 
 export const LoginScreen = () => {
 
@@ -100,12 +101,12 @@ export const LoginScreen = () => {
 
         if (response.ok) {
             dispatch({type: types.loginSuccess, payload: response.data})
-            addToast(response.message, {appearance: 'success'});
+            addToast(response.message, {appearance: 'success', ...toastDismiss});
             localStorage.setItem('token', response.data.token)
             history.push('/dashboard')
         } else {
             dispatch({type: types.loginFailure})
-            addToast(response.message, {appearance: 'error'});
+            addToast(response.message, {appearance: 'error', ...toastDismiss});
         }
 
     }

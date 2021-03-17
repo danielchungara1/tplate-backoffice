@@ -9,6 +9,7 @@ import {useToasts} from "react-toast-notifications";
 import {useHistory} from "react-router-dom";
 import {signUp} from "../../services/signUpService";
 import {BeatLoader} from "react-spinners";
+import {toastDismiss} from "../../config/toastConfig";
 
 export const RegisterScreen = () => {
 
@@ -97,10 +98,10 @@ export const RegisterScreen = () => {
         if (response.ok) {
             dispatch({type: types.loginSuccess, payload: response.data})
             history.push('/auth/login')
-            addToast(response.message, {appearance: 'success'});
+            addToast(response.message, {appearance: 'success' , ...toastDismiss});
         } else {
             dispatch({type: types.loginFailure})
-            addToast(response.message, {appearance: 'error'});
+            addToast(response.message, {appearance: 'error' , ...toastDismiss});
         }
     }
 

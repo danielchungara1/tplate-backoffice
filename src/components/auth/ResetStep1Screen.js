@@ -9,6 +9,7 @@ import {useForm} from '../../hooks/useForm';
 import {types} from "../../types/types";
 import {resetStep1} from "../../services/resetPasswordService";
 import { BeatLoader} from "react-spinners";
+import {toastDismiss} from "../../config/toastConfig";
 
 export const ResetStep1Screen = () => {
 
@@ -75,10 +76,10 @@ export const ResetStep1Screen = () => {
         if (response.ok) {
             dispatch({type: types.resetPassword1Success, payload: email})
             history.push('/auth/reset-password/step2')
-            addToast(response.message, {appearance: 'success'});
+            addToast(response.message, {appearance: 'success' , ...toastDismiss});
         } else {
             dispatch({type: types.resetPassword1Failure})
-            addToast(response.message, {appearance: 'error'});
+            addToast(response.message, {appearance: 'error' , ...toastDismiss});
         }
     }
 
